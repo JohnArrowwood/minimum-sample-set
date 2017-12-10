@@ -1,0 +1,44 @@
+{
+  "name": "minimum-sample-set",
+  "version": "1.0.0",
+  "description": "sample a large data set into a much smaller one by keeping only those that offer something new",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "nyc mocha test/*.test.ts test/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnArrowwood/minimum-sample-set.git"
+  },
+  "author": "John Arrowwood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnArrowwood/minimum-sample-set/issues"
+  },
+  "homepage": "https://github.com/JohnArrowwood/minimum-sample-set#readme",
+  "devDependencies": {
+    "@types/chai": "^4.0.8",
+    "@types/mocha": "^2.2.44",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "source-map-support": "^0.5.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.2"
+  },
+  "nyc": {
+    "include": ["src/**/*.ts"],
+    "extension": [".ts"],
+    "require": ["ts-node/register"],
+    "reporter": ["text-summary","html"],
+    "sourceMap": true,
+    "instrument": true,
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99
+  }
+}
