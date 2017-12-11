@@ -141,6 +141,11 @@ export class MinimumSampleSet {
         return this;
     }
 
+    callbackSampler() {
+        let self = this;
+        return ( o: any ) => self.sample(o);
+    }
+
     reset() {
         this._sample_num = 0;
         this._samples = {};
