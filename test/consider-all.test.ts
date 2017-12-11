@@ -58,4 +58,5 @@ describe( 'MinimumSampleSet.considerAll( fields )', function() {
         expect( list.length ).to.equal( 3 );
         expect( list ).to.have.same.members(['A','B','C']);                
     });
+    
 });
