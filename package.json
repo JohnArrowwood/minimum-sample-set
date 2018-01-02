@@ -1,6 +1,6 @@
 {
   "name": "minimum-sample-set",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "sample a large data set into a much smaller one by keeping only those that offer something new",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
