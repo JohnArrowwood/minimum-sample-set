@@ -17,6 +17,9 @@ describe( 'MinimumSampleSet.ignorePair( field, field )', function() {
     }
     function testCountIs( count: number, mss: MinimumSampleSet ) {
         let selected = test(mss);
+        if ( selected.length !== count ) {
+            console.log( selected );
+        }
         expect( selected.length ).to.equal( count );
     }
     function testCountLessThan( count: number, mss: MinimumSampleSet ) {
@@ -62,6 +65,18 @@ describe( 'MinimumSampleSet.ignorePair( field, field )', function() {
             .ignorePair('letter','symbol')
             .ignorePair('digit','symbol')
         );
-    })
+    });
+    it( 'should allow filtering out a pair to be conditional', function() {
+        testCountIs( 7, 
+            new MinimumSampleSet()
+            //.consider('letter')
+            .consider('digit')
+            .consider('symbol')
+            //.consider('others')
+            .ignorePair('digit','symbol','symbol==="@"')
+            //.ignorePair('letter','symbol','symbol==="@"')
+            //.ignorePair('other','symbol','symbol==="@"')
+        )
+    });
 
 });

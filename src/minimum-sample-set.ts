@@ -1,6 +1,8 @@
+import * as expr from 'expression-eval';
+
 export type FieldName = string;
 export type FieldNames = { [name:string]: undefined };
-       type IgnorePairing = { [field1:string]: { [field2:string]: undefined }};
+       type IgnorePairing = { [field1:string]: { [field2:string]: any }};
 export class MinimumSampleSet {
 
     private _fields: Set<string> = new Set<string>();
@@ -60,7 +62,7 @@ export class MinimumSampleSet {
         return this._order;
     }
 
-    ignorePair( field1: string, field2: string ) {
+    ignorePair( field1: string, field2: string, condition: string = 'true' ) {
         // ignore invalid inputs
         if ( field1 === null ||
              field1 === undefined ||
@@ -82,7 +84,7 @@ export class MinimumSampleSet {
         }
         // save the pair
         if ( ! this._ignore_pairs.hasOwnProperty(one) ) this._ignore_pairs[one] = {};
-        this._ignore_pairs[one][two] = undefined;
+        this._ignore_pairs[one][two] = expr.parse(condition);
         
         return this;
     }
@@ -105,7 +107,8 @@ export class MinimumSampleSet {
             for ( let j = i+1 ; j < this._order.length ; j++ ) {
                 let field2 = this._order[j];
                 if ( this._ignore_pairs.hasOwnProperty(field) && 
-                     this._ignore_pairs[field].hasOwnProperty(field2) ) 
+                     this._ignore_pairs[field].hasOwnProperty(field2) &&
+                     expr.eval( this._ignore_pairs[field][field2], data ) )
                     continue;  // skip the pairing
 
                 let key_pair = `[${key}]+[${field2}::${data[field2]}]`;

@@ -49,5 +49,8 @@
     "statements": 99,
     "functions": 99,
     "branches": 99
+  },
+  "dependencies": {
+    "expression-eval": "^1.2.0"
   }
 }
