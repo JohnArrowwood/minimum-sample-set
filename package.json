@@ -5,7 +5,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "nyc mocha test/*.test.ts test/**/*.test.ts"
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "test": "nyc mocha test/*.test.ts test/**/*.test.ts",
+    "watch:build": "tsc --watch",
+    "watch:server": "nodemon './dist/index.js' --watch './dist'"
   },
   "repository": {
     "type": "git",
